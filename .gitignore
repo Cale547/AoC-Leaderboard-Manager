@@ -1,0 +1,5 @@
+.env
+testing.py
+.vscode/*
+storedScores.json
+.pylintrc
