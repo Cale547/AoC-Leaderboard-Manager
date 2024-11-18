@@ -11,7 +11,6 @@ def fetch_data():
     headers = {
         "User-Agent": "github.com/Cale547 AoChie (Leaderboard manager)",
         "Cookie": os.environ.get("sessionCookie")
-        # Replace with your session cookie to authenticate
     }
 
     response = requests.get(url, headers=headers, timeout=20)
