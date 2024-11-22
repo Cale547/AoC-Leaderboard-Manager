@@ -23,10 +23,6 @@ cursor.execute("""SELECT * FROM player
                LIMIT 1;""")
 newPlayer = (len(cursor.fetchall()) == 0)
 
-cursor.execute("""SELECT * FROM days_completed
-               LIMIT 1;""")
-newDaysCompleted = (len(cursor.fetchall()) == 0)
-
 for member in data_members:
     current_user = dict(data_members[member]) # current_user.keys() = {last_star_ts, name, global_score, stars, id, local_score, completion_day_level}
     user_id = current_user['id']
@@ -40,6 +36,8 @@ for member in data_members:
     stars = current_user['stars']
     global_score = current_user['global_score']
 
+# With current setup, new players will not be added since that only happens when the table is empty.
+# If someone joins, delete the table and go again. (Or just rewrite the code)
     if newPlayer:
         cursor.execute("""INSERT INTO player (user_id, username, local_score, last_star_time, last_star_date, stars, global_score) 
         VALUES (%s,%s,%s,%s,%s,%s,%s);""", (user_id, name, local_score, time, date, stars, global_score))
