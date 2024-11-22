@@ -5,3 +5,4 @@ storedScores.json
 .pylintrc
 .session.sql
 __pycache__/*
+*.bat

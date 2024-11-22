@@ -1,15 +1,25 @@
 {
   "name": "aoc-leaderboard-manager",
   "version": "1.0.0",
+  "private": "true",
   "description": "AoChie Discord Bot",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Cale547",
+  "license": "UNLICENSED",
   "dependencies": {
     "discord.js": "^14.16.3",
-    "dotenv": "^16.4.5"
-  }
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cale547/AoC-Leaderboard-Manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Cale547/AoC-Leaderboard-Manager/issues"
+  },
+  "homepage": "https://github.com/Cale547/AoC-Leaderboard-Manager#readme"
 }
