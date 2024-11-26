@@ -15,21 +15,26 @@ client.on('interactionCreate', async (interaction) => {
     console.log(user.globalName, "sa det"); */
 
     if (commandName === 'recent') {
-        await interaction.reply('Pong!');
+        const query = "SELECT (username,last_star_date,last_star_time) FROM player "+
+            "ORDER BY last_star_date DESC,last_star_time DESC LIMIT 1;";
+        console.log(query);
+        const dbResponse = await queryDatabase(query);
+        console.log(dbResponse);
+        
+        const response = dbResponse.map(idk => `${idk[0].padEnd(12)} | ${idk[1]} | ${idk[2]}`);
+        await interaction.reply('```Användare    | Datum      | Tid \n'+response+'```');
 
-
-    } else if (commandName === 'stars') {
-        let rowArray = await queryDatabase("SELECT (username, stars) FROM player ORDER BY stars DESC, username ASC;");
-        //let nameLengths = rowArray.map(rowArray[0])
-        let nameLengths = rowArray.map(row => row[0].length);
-        let maxlength = Math.max(nameLengths);
-        console.log(nameLengths);
-        console.log(maxlength);
-
-        console.log(Object.entries(rowArray));
-        await interaction.reply('```Användare | Stjärnor\n'+rowArray+'```');
+    } else if (commandName === 'stjärnor') {
+        const dbResponse = await queryDatabase("SELECT (username, stars) FROM player ORDER BY stars DESC, username ASC;");
+        const response = dbResponse.map(row =>  `${row[0].padEnd(12)} | ${row[1]}`).join('\n');
+        await interaction.reply('```Användare    | Stjärnor\n'+response+'```');
     } else if (commandName === 'input') {
         await interaction.reply('+30 extraliv');
+    } else if (commandName === 'topplista') {
+
+        
+
+
     }
         /* console.log(data[0]);
         let response = "";

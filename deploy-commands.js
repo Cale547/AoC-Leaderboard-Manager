@@ -11,8 +11,12 @@ const commands = [
         description: 'Visar vem som fick en stjärna senast och när',
     },
     {
-        name: 'stars',
+        name: 'stjärnor',
         description: 'Visar hur många stjärnor alla har'
+    },
+    {
+        name: 'topplista',
+        description: 'Visar hela topplistan som på hemsidan'
     }
 ];
 
