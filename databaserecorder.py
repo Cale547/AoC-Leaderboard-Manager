@@ -31,15 +31,15 @@ for member in data_members:
     last_star_ts = tools.unix_to_human(current_user['last_star_ts'])
     time = last_star_ts[0]
     date = last_star_ts[1]
-    if date == "01/01/1970":
-        time = date = "n/a"
+    #if date == "1970-01-01":
+    #    time = date = "n/a"
     stars = current_user['stars']
     global_score = current_user['global_score']
 
 # With current setup, new players will not be added since that only happens when the table is empty.
 # If someone joins, delete the table and go again. (Or just rewrite the code)
     if newPlayer:
-        cursor.execute("""INSERT INTO player (user_id, username, local_score, last_star_time, last_star_date, stars, global_score) 
+        cursor.execute("""INSERT INTO player (user_id, username, local_score, last_star_time, last_star_date, stars, global_score)
         VALUES (%s,%s,%s,%s,%s,%s,%s);""", (user_id, name, local_score, time, date, stars, global_score))
 
     else:

@@ -12,7 +12,7 @@ async function queryDatabase(query, params) {
       client.connect();
     try {
       const res = await client.query(query, params);
-      console.log(res.rows);
+      //console.log(res.rows);
       return objToRowArray(res.rows);
     } catch (err) {
       console.error('Database query error:', err);

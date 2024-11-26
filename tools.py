@@ -2,7 +2,7 @@ def unix_to_human(ux_time):
     if ux_time < 0:
         print("Unable to calculate dates before Unix epoch (January 1st 1970)")
         return "Unable to calculate date for " + str(ux_time)
-    time_left = ux_time
+    time_left = ux_time + 3600 # unix time is one hour after glorious Sweden
     m_length = [31,28,31,30,31,30,31,31,30,31,30,31]
     year = 1970
     month = 1
@@ -56,4 +56,5 @@ def unix_to_human(ux_time):
 
     timestamp1 = [f'{hour:02d}:{minute:02d}:{second:02d}', f'{year:04d}{month:02d}{day:02d}']
     timestamp2 = [f'{hour:02d}:{minute:02d}:{second:02d}', f'{day:02d}/{month:02d}/{year:04d}']
-    return timestamp2
+    timestampDB = [f'{hour:02d}:{minute:02d}:{second:02d}', f'{year:04d}-{month:02d}-{day:02d}']
+    return timestampDB
