@@ -3,20 +3,16 @@ const { REST, Routes } = require('discord.js');
 
 const commands = [
     {
-        name: 'input',
-        description: 'hmm...',
-    },
-    {
-        name: 'recent',
+        name: 'senast',
         description: 'Visar vem som fick en stjärna senast och när',
     },
     {
         name: 'stjärnor',
-        description: 'Visar hur många stjärnor alla har'
+        description: 'Visar vilka stjärnor alla har'
     },
     {
         name: 'topplista',
-        description: 'Visar hela topplistan som på hemsidan'
+        description: 'Visar poäng, antal stjärnor, och tid för senaste stjärna'
     }
 ];
 
