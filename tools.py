@@ -1,4 +1,7 @@
 def unix_to_human(ux_time):
+    if isinstance(ux_time, float):
+        ux_time = int(ux_time)
+        
     if ux_time < 0:
         print("Unable to calculate dates before Unix epoch (January 1st 1970)")
         return "Unable to calculate date for " + str(ux_time)
