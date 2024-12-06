@@ -52,14 +52,9 @@ client.on('interactionCreate', async (interaction) => {
         const response = Object.entries(playerProgress)
         .map(([player, progress]) => `${player.padEnd(12)} | ${progress.join('')}`)
         .join('\n');
-        //console.log(playerProgress);
-
         
         const header = '```Användare    | Dagar    1111111111222222\n'
         + '             | 1234567890123456789012345\n'
-
-
-        //await interaction.reply(header+response+'```');
         await interaction.reply(header+response+'```');
 
 
@@ -68,18 +63,10 @@ client.on('interactionCreate', async (interaction) => {
             "ORDER BY local_score DESC, username ASC;";
             console.log(query);
         const dbResponse = await queryDatabase(query);
-        const response = dbResponse.map(row =>  `${row[0].padEnd(12)} | ${row[1].padEnd(12)} | ${row[2].padEnd(12)} | ${row[3].padEnd(12)} | ${row[4].padEnd(12)} `).join('\n');
-        const header = '```Namn         | Poäng        | Stjärnor     | Datum        | Tid \n';
+        const response = dbResponse.map(row =>  `${row[0].padEnd(12)} | ${row[1].padEnd(7)} | ${row[2].padEnd(8)} | ${row[3].padEnd(12)} | ${row[4].padEnd(12)} `).join('\n');
+        const header = '```Namn         | Poäng   | Stjärnor | Datum        | Tid \n';
         await interaction.reply(header+response+'```');
     }
-        /* console.log(data[0]);
-        let response = "";
-        data.forEach(element => {
-            response += data[];
-        });
-        //console.log(Object.entries(data));
-        //const response = data.map(val => `Player ${val[0]}: ${val[1]} points`).join('\n');
-        await interaction.reply(response); */
 
 
 
