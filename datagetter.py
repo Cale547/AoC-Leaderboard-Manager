@@ -1,12 +1,15 @@
-import requests
 import time
 import os
 import json
+import requests
 from dotenv import load_dotenv
-#import schedule
+import schedule
+import tools
+import databaserecorder
 
 load_dotenv()
 def fetch_data():
+    print("Fetching data at time",tools.unix_to_human(int(time.time())))
     url = os.environ.get("url")
     headers = {
         "User-Agent": "github.com/Cale547 AoChie (Leaderboard manager)",
@@ -18,27 +21,29 @@ def fetch_data():
     if response.status_code == 200:
         data = response.json()
         str_data = json.dumps(data)
-
-        print(str_data)
         
         if os.path.isfile("storedScores.json"):
             os.remove("storedScores.json")
         stored_file = open("storedScores.json", "x",encoding="UTF8")
         stored_file.write(str_data)
+        stored_file.close()
 
-        #for entry in data:
-        #   stored_file.write(entry)
-        #stored_file.close()
+        databaserecorder.main()
+
+
     
     else:
         print("Failed to retrieve data:", response.status_code)
 
 
 
-#schedule.every(15).minutes.do(fetch_data)
+schedule.every(15).minutes.do(fetch_data)
 
-#while True:
-    #schedule.run_pending()
-    #time.sleep(1)
-fetch_data()
-
+if int(time.time()-os.path.getmtime("storedScores.json")) >= 900:
+    fetch_data()
+    print("Initial fetch complete")
+print("Scheduler started at",tools.unix_to_human(time.time()))
+while True:
+    #print(int(time.time()-os.path.getmtime("storedScores.json")),"seconds since last update")
+    schedule.run_pending()
+    time.sleep(5)
